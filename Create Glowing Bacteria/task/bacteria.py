@@ -18,8 +18,13 @@ def complementary_strand(strand):
     return ''.join([complementary_letter(l) for l in letters])
 
 RESTRICTION_SITE = 'CTGCAG'
+strand = input()
+print(strand)
+print(complementary_strand(strand))
+'''
 first_strand, second_strand = input().split()
 i = first_strand.find(RESTRICTION_SITE)
 print(first_strand[:i + 1], first_strand[i + 1:])
 j = second_strand.find(complementary_strand(RESTRICTION_SITE))
 print(second_strand[:j + 5], second_strand[j + 5:])
+'''
