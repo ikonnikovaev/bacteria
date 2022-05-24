@@ -17,20 +17,26 @@ def complementary_strand(strand):
     letters = list(strand)
     return ''.join([complementary_letter(l) for l in letters])
 
-# RESTRICTION_SITE = 'CTGCAG'
+
 file_name = input()
 file = open(file_name)
-lines = file.readlines()
-plasmid = lines[0].split()
-gfp = lines[1].split()
+lines = [line.strip() for line in file.readlines()]
+plasmid_original = lines[0]
+plasmid_restriction = lines[1]
+gfp_original = lines[2]
+gfp_restriction = lines[3].split()
 
-print(plasmid[0] + gfp[0] + plasmid[1])
-print(plasmid[2] + gfp[1] + plasmid[3])
+p = plasmid_original.find(plasmid_restriction)
+l = gfp_original.find(gfp_restriction[0])
+r = gfp_original.rfind(gfp_restriction[1])
+
+result = plasmid_original[:p + 1] + gfp_original[l + 1 : r + 1] + plasmid_original[p + 1:]
+result = result.strip()
+print(result)
+print(complementary_strand(result))
+
 
 '''
-gfp_original = input().strip()
-gfp_complementary = complementary_strand(gfp_original)
-restriction_sites = input().split()
 
 l_original = gfp_original.find(restriction_sites[0])
 r_original = gfp_original.rfind(restriction_sites[1])
